@@ -18,11 +18,6 @@ public class ProjetApplication {
 
 		ApplicationContext contexte = SpringApplication.run(ProjetApplication.class, args);
 
-
-
-		
-
-
 	}
 
 

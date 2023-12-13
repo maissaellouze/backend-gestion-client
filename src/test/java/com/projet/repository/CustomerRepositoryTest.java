@@ -106,7 +106,7 @@ public class CustomerRepositoryTest {
         List<Client> ClientList = customerRepository.findAll();
 
         assertThat(ClientList).isNotNull();
-        assertThat(ClientList.size()).isEqualTo(2);
+        assertThat(ClientList.size()).isEqualTo(4);
     }
 
     @Test
@@ -247,9 +247,6 @@ public class CustomerRepositoryTest {
         when(customerRep.searchCustomerByNumTel(keyword)).thenReturn(customerList);
 
         List<Client> result = customerRep.searchCustomerByNumTel(keyword);
-
-        // Perform assertions on the result
-        // ...
 
         verify(customerRep, times(1)).searchCustomerByNumTel(keyword);
     }

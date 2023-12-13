@@ -1,34 +1,31 @@
-package com.projet.repository;
+package com.projet.services;
+
 import com.projet.entities.Client;
 import com.projet.metier.CustomerMetierImpl;
 import com.projet.repository.CustomerRepository;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
+
 @ExtendWith(MockitoExtension.class)
+
 public class CustomerServiceTest {
     @Mock
-        private Client clt;
+    private CustomerRepository customerRepository;
     @InjectMocks
     private CustomerMetierImpl customerMetier;
 
-    @Mock
-    private CustomerRepository customerRepository;
+
 
 
     @Test
@@ -110,15 +107,18 @@ public class CustomerServiceTest {
     }
 
     @Test
-    public void updateClient() {
+    public void updateCustomer() {
         // Arrange
+        Long customerId = 1L;
         Client clientToUpdate = createTestClient();
 
         // Configure the behavior of the repository's save method
         when(customerRepository.save(any(Client.class))).thenReturn(clientToUpdate);
+        // Assuming that the findById method is properly configured in customerRepository
+        when(customerRepository.findById(customerId)).thenReturn(Optional.of(clientToUpdate));
 
         // Act
-        Client updatedClient = customerMetier.updateClient(clientToUpdate);
+        Client updatedClient = customerMetier.updateClient(customerId, clientToUpdate);
 
         // Assert
         assertThat(updatedClient).isNotNull();
@@ -127,6 +127,7 @@ public class CustomerServiceTest {
         // Verify that the save method was called with the expected argument
         verify(customerRepository, times(1)).save(eq(clientToUpdate));
     }
+
     @Test
     public void searchCustomers() {
         // Arrange

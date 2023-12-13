@@ -11,15 +11,14 @@ public interface CustomerMetierInterface {
     List<Client>  getActifCustomers();
     List<Client>  getNonActifCustomers();
     List<Client> listeClients();
-     void deleteCustomer(Long cltId);
+    void deleteCustomer(Long cltId);
 
     Client save(Client p);
     Optional<Client> findCltId(Long id);
-     Client updateClient (Client clt);
+    Client updateClient(Long customerId, Client updatedClient);
     List<Client> searchCustomers(String keyword);
     List<Client> searchCustomerByadd(String keyword);
     List<Client> searchCustomerByNumTel(String keyword);
-
     Double getTotalRevenueForClient(Client client);
     List<Object[]> getTotalRevenueForAllClients();
     List<Object[]> getRemainingAmountForAllClients();
@@ -27,5 +26,7 @@ public interface CustomerMetierInterface {
     List<Object[]> getPaymentsStatusForAllClients();
     List<Object[]> getRevenueByClientAndYear( Client client, String year);
     List<Object[]> getRevenueByYear(@Param("year") String year);
+    boolean hasUnpaidInvoices(@Param("clientId") Long clientId);
+
 
 }
