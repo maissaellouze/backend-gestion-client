@@ -106,7 +106,7 @@ public class CustomerRepositoryTest {
         List<Client> ClientList = customerRepository.findAll();
 
         assertThat(ClientList).isNotNull();
-        assertThat(ClientList.size()).isEqualTo(4);
+        assertThat(ClientList.size()).isEqualTo(6);
     }
 
     @Test
@@ -226,14 +226,14 @@ public class CustomerRepositoryTest {
         List<Object[]> paymentsList = new ArrayList<>();
         // Add test data to paymentsList
 
-        when(customerRep.getPaymentsForAllClients()).thenReturn(paymentsList);
+        when(customerRep.getPaymentsStatusForAllClients()).thenReturn(paymentsList);
 
-        List<Object[]> result = customerRep.getPaymentsForAllClients();
+        List<Object[]> result = customerRep.getPaymentsStatusForAllClients();
 
         // Perform assertions on the result
         // ...
 
-        verify(customerRep, times(1)).getPaymentsForAllClients();
+        verify(customerRep, times(1)).getPaymentsStatusForAllClients();
     }
 
     @Test

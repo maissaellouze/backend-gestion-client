@@ -279,7 +279,7 @@ public class CustomerServiceTest {
         );
 
         // Configure the behavior of the repository's getPaymentsForAllClients method
-        when(customerRepository.getPaymentsForAllClients()).thenReturn(expectedPaymentsList);
+        when(customerRepository.getPaymentsStatusForAllClients()).thenReturn(expectedPaymentsList);
 
         // Act
         List<Object[]> actualPaymentsList = customerMetier.getPaymentsStatusForAllClients();
@@ -289,7 +289,7 @@ public class CustomerServiceTest {
         assertThat(actualPaymentsList).hasSize(2);
 
         // Verify that the getPaymentsForAllClients method was called
-        verify(customerRepository, times(1)).getPaymentsForAllClients();
+        verify(customerRepository, times(1)).getPaymentsStatusForAllClients();
     }
 
     @Test

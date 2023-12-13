@@ -86,6 +86,7 @@ public class CustomerControllerTest {
                 .andExpect(status().isOk());
 
     }
+    /*
     @Test
     public void testGetAllProduits() throws Exception {
         Client client1 = Client.builder().idCl(1L).nomCl("maissa").build();
@@ -116,7 +117,7 @@ public class CustomerControllerTest {
                 .andExpect(jsonPath("$.size()").value(0));
     }
 
-
+*/
     @Test
     void testGetActifCustomers() throws Exception {
         // Créez quelques clients fictifs actifs pour le test

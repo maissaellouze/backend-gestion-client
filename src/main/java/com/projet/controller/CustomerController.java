@@ -33,15 +33,10 @@ public class CustomerController {
     public CustomerController(CustomerMetierInterface customerMetier) {
         this.customerMetier = customerMetier;
     }
-<<<<<<< HEAD
     @GetMapping(value ="/index" )
     public String accueil() {
         return "BienVenue au service Web REST 'produits'.....";
     }
-=======
-
-
->>>>>>> c42d774a8507f8d7dace066631322c1a0b542e9f
 
     @PostMapping(
 // spécifier le path de la méthode
@@ -62,12 +57,12 @@ public class CustomerController {
 
         return customerMetier.listeClients();
     }
-    @GetMapping(value= "/Actif")
+    @GetMapping(value= "/Actif", produces = "application/json")
     public List<Client> getActifCustomers() {
 
         return customerMetier.getActifCustomers();
     }
-    @GetMapping(value = "/NonActif")
+    @GetMapping(value = "/NonActif", produces = "application/json")
     public  List<Client> getNonActif(){
         return customerMetier.getNonActifCustomers();
     }
@@ -76,55 +71,46 @@ public class CustomerController {
     @PutMapping(value = "/update/{customerId}", produces = MediaType.APPLICATION_JSON_VALUE)
     @CrossOrigin(origins = "http://localhost:4200")
     public Client updateCustomer(@PathVariable Long customerId, @RequestBody Client clt) {
-<<<<<<< HEAD
 
         return customerMetier.updateClient(customerId,clt);
-=======
-        return customerMetier.updateClient(customerId, clt);
->>>>>>> c42d774a8507f8d7dace066631322c1a0b542e9f
     }
 
 
 
-<<<<<<< HEAD
 
 
 
 
 
-    @DeleteMapping(value = "/delete/{customerId}")
+    @DeleteMapping(value = "/delete/{customerId}", produces = "application/json")
     public void deleteProduit(@PathVariable Long customerId)
     {
-=======
-    @DeleteMapping(value = "/delete/{customerId}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public void deleteProduit(@PathVariable Long customerId) {
->>>>>>> c42d774a8507f8d7dace066631322c1a0b542e9f
         customerMetier.deleteCustomer(customerId);
     }
 
-    @GetMapping(value ="{customerId}" )
+    @GetMapping(value ="{customerId}" , produces = "application/json")
     public Optional<Client> betCltId (@PathVariable Long customerId){
         return customerMetier.findCltId(customerId);
     }
 
-    @GetMapping(value = "/search")
+    @GetMapping(value = "/search", produces = "application/json")
     public List<Client> searchCustomers(@RequestParam(name = "keyword") String keyword) {
 
         return customerMetier.searchCustomers("%" + keyword + "%");
     }
 
-    @GetMapping(value = "/searchadd")
+    @GetMapping(value = "/searchadd", produces = "application/json")
     public List<Client> searchCustomersByAdd(@RequestParam(name = "adresse") String adresse) {
 
         return customerMetier.searchCustomerByadd("%" + adresse + "%");
     }
 
-    @GetMapping(value = "/searchtel")
+    @GetMapping(value = "/searchtel", produces = "application/json")
     public List<Client> searchCustomersByNumTel(@RequestParam(name = "NumTel") String NumTel) {
 
         return customerMetier.searchCustomerByNumTel("%" + NumTel + "%");
     }
-    @GetMapping(value = "/{clientId}/getTotalRevenue")
+    @GetMapping(value = "/{clientId}/getTotalRevenue", produces = "application/json")
     public Double getTotalRevenueForClient(@PathVariable Long clientId) {
         Optional<Client> client = customerMetier.findCltId(clientId);
         if (client.isPresent())
@@ -134,19 +120,19 @@ public class CustomerController {
     }
 
 
-    @GetMapping(value = "/getTotalRevenue")
+    @GetMapping(value = "/getTotalRevenue", produces = "application/json")
     public List<Object[]> getTotalRevenueForAllClient() {
         return customerMetier.getTotalRevenueForAllClients();
 
 
     }
 
-    @GetMapping(value = "/getRemainingAmount")
+    @GetMapping(value = "/getRemainingAmount", produces = "application/json")
     public List<Object[]> getRemainingAmountAllClient() {
         return customerMetier.getRemainingAmountForAllClients();
     }
 
-    @GetMapping(value = "/{clientId}/getRemainingAmount")
+    @GetMapping(value = "/{clientId}/getRemainingAmount", produces = "application/json")
     public Double getRemainingAmountForClient(@PathVariable Long clientId) {
         Optional<Client> client = customerMetier.findCltId(clientId);
         if (client.isPresent())
@@ -154,7 +140,7 @@ public class CustomerController {
 
         return 0.0;
     }
-/*
+
     @GetMapping("/paymentsClients")
     public List<Object[]> getPaymentsStatusForAllClients() {
         return customerMetier.getPaymentsStatusForAllClients();
@@ -193,7 +179,7 @@ public class CustomerController {
                 .header("Content-Disposition", "inline; filename=\"" + "downloadListCustomersList" + ".pdf\"")
                 .body(JasperExportManager.exportReportToPdf(jasperPrint));
     }
-*/
+
 
     @GetMapping("/{clientId}/imprimer")
     public ResponseEntity<byte[]> downloadDetailClients(@PathVariable Long clientId) throws FileNotFoundException, JRException {
