@@ -15,7 +15,7 @@ public interface CustomerMetierInterface {
 
     Client save(Client p);
     Optional<Client> findCltId(Long id);
-     Client updateClient (Client clt);
+    Client updateClient(Long customerId,Client updatedClient);
     List<Client> searchCustomers(String keyword);
     List<Client> searchCustomerByadd(String keyword);
     List<Client> searchCustomerByNumTel(String keyword);

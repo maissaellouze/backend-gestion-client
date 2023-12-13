@@ -31,10 +31,7 @@ public class CustomerController {
         this.customerMetier = customerMetier;
     }
 
-    @GetMapping(value = "/index")
-    public String accueil() {
-        return "BienVenue au service Web REST 'produits'.....";
-    }
+
 
     @PostMapping(
             value = "/add", produces = {MediaType.APPLICATION_JSON_VALUE,
@@ -67,9 +64,9 @@ public class CustomerController {
 
     @PutMapping(value = "/update/{customerId}", produces = MediaType.APPLICATION_JSON_VALUE)
     public Client updateCustomer(@PathVariable Long customerId, @RequestBody Client clt) {
-        clt.setIdCl(customerId);
-        return customerMetier.updateClient(clt);
+        return customerMetier.updateClient(customerId, clt);
     }
+
 
 
     @DeleteMapping(value = "/delete/{customerId}", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -129,7 +126,7 @@ public class CustomerController {
 
         return 0.0;
     }
-
+/*
     @GetMapping("/paymentsClients")
     public List<Object[]> getPaymentsStatusForAllClients() {
         return customerMetier.getPaymentsStatusForAllClients();
@@ -166,7 +163,7 @@ public class CustomerController {
                 .header("Content-Disposition", "inline; filename=\"" + "downloadListCustomersList" + ".pdf\"")
                 .body(JasperExportManager.exportReportToPdf(jasperPrint));
     }
-
+*/
 
 
 }
