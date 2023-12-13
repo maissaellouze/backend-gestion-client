@@ -3,6 +3,10 @@ package com.projet.metier;
 import com.projet.entities.Client;
 import com.projet.repository.CustomerRepository;
 import jakarta.persistence.EntityNotFoundException;
+<<<<<<< HEAD
+=======
+import jakarta.transaction.Transactional;
+>>>>>>> c42d774a8507f8d7dace066631322c1a0b542e9f
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +20,10 @@ public class CustomerMetierImpl implements  CustomerMetierInterface{
 
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> c42d774a8507f8d7dace066631322c1a0b542e9f
     @Override
     public void ajouterClient(Client clt) {
 
@@ -89,6 +97,7 @@ public class CustomerMetierImpl implements  CustomerMetierInterface{
             throw new IllegalArgumentException("Erreur lors de la mise à jour du client.", e);
         }
     }
+
 
     @Override
     public List<Client> searchCustomers(String keyword) {

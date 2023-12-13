@@ -33,10 +33,15 @@ public class CustomerController {
     public CustomerController(CustomerMetierInterface customerMetier) {
         this.customerMetier = customerMetier;
     }
+<<<<<<< HEAD
     @GetMapping(value ="/index" )
     public String accueil() {
         return "BienVenue au service Web REST 'produits'.....";
     }
+=======
+
+
+>>>>>>> c42d774a8507f8d7dace066631322c1a0b542e9f
 
     @PostMapping(
 // spécifier le path de la méthode
@@ -71,12 +76,17 @@ public class CustomerController {
     @PutMapping(value = "/update/{customerId}", produces = MediaType.APPLICATION_JSON_VALUE)
     @CrossOrigin(origins = "http://localhost:4200")
     public Client updateCustomer(@PathVariable Long customerId, @RequestBody Client clt) {
+<<<<<<< HEAD
 
         return customerMetier.updateClient(customerId,clt);
+=======
+        return customerMetier.updateClient(customerId, clt);
+>>>>>>> c42d774a8507f8d7dace066631322c1a0b542e9f
     }
 
 
 
+<<<<<<< HEAD
 
 
 
@@ -85,6 +95,10 @@ public class CustomerController {
     @DeleteMapping(value = "/delete/{customerId}")
     public void deleteProduit(@PathVariable Long customerId)
     {
+=======
+    @DeleteMapping(value = "/delete/{customerId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public void deleteProduit(@PathVariable Long customerId) {
+>>>>>>> c42d774a8507f8d7dace066631322c1a0b542e9f
         customerMetier.deleteCustomer(customerId);
     }
 
@@ -140,7 +154,7 @@ public class CustomerController {
 
         return 0.0;
     }
-
+/*
     @GetMapping("/paymentsClients")
     public List<Object[]> getPaymentsStatusForAllClients() {
         return customerMetier.getPaymentsStatusForAllClients();
@@ -179,7 +193,7 @@ public class CustomerController {
                 .header("Content-Disposition", "inline; filename=\"" + "downloadListCustomersList" + ".pdf\"")
                 .body(JasperExportManager.exportReportToPdf(jasperPrint));
     }
-
+*/
 
     @GetMapping("/{clientId}/imprimer")
     public ResponseEntity<byte[]> downloadDetailClients(@PathVariable Long clientId) throws FileNotFoundException, JRException {
